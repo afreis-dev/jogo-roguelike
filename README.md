@@ -33,13 +33,14 @@ python -m src.main
 ## Controles Iniciais
 
 - Movimentação: `W`, `A`, `S`, `D` ou setas direcionais.
+- Ataque corpo a corpo: mova-se na direção do inimigo.
 - Sair: `Q`.
 
 ## Roadmap Inicial
 
 - **v0.1.0:** mapa ASCII procedural, movimentação do jogador.
-- **v0.2.0 (atual):** sistema de turnos, campo de visão e HUD.
-- **v0.3.0:** inimigos, combate e itens básicos.
+- **v0.2.0:** sistema de turnos, campo de visão clássico e HUD com log rolante.
+- **v0.3.0 (atual):** inimigos goblins, combate com atributos e drops simples.
 
 ## Estrutura de Pastas
 
@@ -64,4 +65,6 @@ jogo-roguelike/
 - Mapa amplo (100x60) com geração procedural de salas e corredores.
 - Campo de visão clássico com neblina de guerra persistente.
 - Sistema de turnos sincronizado com a entrada do jogador.
-- HUD com HP, energia, nível e log de mensagens rolante.
+- HUD com HP, energia, nível, inventário rápido e log de mensagens rolante.
+- Goblins hostis que perseguem o jogador e atacam com base em atributos.
+- Itens simples (poções) obtidos como drop e tela de resumo ao final da expedição.
