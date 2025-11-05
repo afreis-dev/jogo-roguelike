@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 # Jogo Roguelike ASCII
+=======
+# Jogo Roguelike
+>>>>>>> 7d40587 (docs(readme): adiciona log inicial de desenvolvimento)
 
 Projeto de roguelike em terminal inspirado em Warsim, Caves of Qud e Dwarf Fortress.
 
