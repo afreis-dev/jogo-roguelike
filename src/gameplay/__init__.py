@@ -1,0 +1,1 @@
+"""Futuramente conterá sistemas de gameplay como combate e inventário."""
