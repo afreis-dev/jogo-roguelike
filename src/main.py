@@ -202,7 +202,7 @@ def executar_jogo() -> None:
             sistema_turnos.turno_atual,
         )
         comando = aguardar_comando()
-        rodando = processar_comando(jogador, entidades mapa, comando, mensagens, estatisticas)
+        rodando = processar_comando(jogador, entidades, mapa, comando, mensagens, estatisticas)
         if rodando:
             sistema_turnos.avancar(entidades, jogador, mapa, mensagens)
             if not jogador.esta_vivo():
