@@ -1,7 +1,7 @@
 """Responsável por desenhar o estado atual do jogo no terminal."""
 
 import os
-from typing import Iterable, List, Sequence, Set, Tuple
+from typing import Dict, Iterable, List, Sequence, Set, Tuple
 
 from .mundo.entidade import Entidade
 from .mundo.gerador_mapa import Mapa
@@ -20,7 +20,7 @@ def compor_grade(
     visiveis: Set[Coordenada],
     reveladas: Sequence[Sequence[bool]],
 ) -> List[str]:
-    """Cria uma representação textual considerando FOV e neblina de guerra."""
+    """Cria a malha textual considerando FOV e neblina de guerra."""
 
     grade = [[" " for _ in range(mapa.largura)] for _ in range(mapa.altura)]
 
@@ -44,11 +44,16 @@ def desenhar_hud(
     mensagens: Iterable[str],
     largura_mapa: int,
 ) -> None:
-    """Exibe informações do jogador e o log rolante."""
+    """Exibe informações do jogador, inventário rápido e o log rolante."""
 
     print("-" * largura_mapa)
     print(f"Turno: {turno}")
     print(f"HP: {jogador.descricao_vida()}  Energia: {jogador.descricao_energia()}  Nível: {jogador.nivel}")
+    if jogador.inventario:
+        itens_exibidos = ", ".join(jogador.inventario[-3:])
+    else:
+        itens_exibidos = "vazio"
+    print(f"Inventário rápido: {itens_exibidos}")
     print("Mensagens:")
     for mensagem in mensagens:
         print(f" - {mensagem}")
@@ -74,3 +79,31 @@ def renderizar(
 
     log_recente = list(mensagens)[-limite_mensagens:]
     desenhar_hud(jogador, turno, log_recente, mapa.largura)
+
+
+def mostrar_resumo_final(
+    jogador: Entidade,
+    turno_final: int,
+    estatisticas: Dict[str, int],
+    mensagens: Sequence[str],
+) -> None:
+    """Exibe uma tela de resumo aguardando confirmação do jogador."""
+
+    limpar_tela()
+    status_final = "Vivo" if jogador.esta_vivo() else "Derrotado"
+    print("=== Resumo da Expedição ===")
+    print(f"Status final: {status_final} (HP {jogador.descricao_vida()})")
+    print(f"Turnos percorridos: {turno_final}")
+    print(f"Inimigos derrotados: {estatisticas.get('inimigos_derrotados', 0)}")
+    print(f"Poções coletadas: {estatisticas.get('pocoes_coletadas', 0)}")
+    print("\nÚltimas memórias:")
+    for mensagem in list(mensagens)[-8:]:
+        print(f" - {mensagem}")
+
+    try:
+        input("\nPressione Enter para encerrar.")
+    except EOFError:
+        # Permite encerrar silenciosamente em ambientes sem stdin interativo.
+        pass
+    finally:
+        print()
