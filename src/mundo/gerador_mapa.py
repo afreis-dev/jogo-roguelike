@@ -127,3 +127,14 @@ def _salas_se_intersectam(sala_a: Sala, sala_b: Sala) -> bool:
         or sala_a.y + sala_a.altura < sala_b.y
         or sala_b.y + sala_b.altura < sala_a.y
     )
+
+
+def listar_posicoes_caminhaveis(mapa: Mapa) -> List[Tuple[int, int]]:
+    """Retorna todas as posições marcadas como chão no mapa."""
+
+    posicoes: List[Tuple[int, int]] = []
+    for y in range(mapa.altura):
+        for x in range(mapa.largura):
+            if not mapa.eh_parede(x, y):
+                posicoes.append((x, y))
+    return posicoes
