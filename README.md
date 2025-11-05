@@ -37,8 +37,8 @@ python -m src.main
 
 ## Roadmap Inicial
 
-- **v0.1.0 (atual):** mapa ASCII procedural, movimentação do jogador.
-- **v0.2.0:** sistema de turnos, campo de visão e HUD.
+- **v0.1.0:** mapa ASCII procedural, movimentação do jogador.
+- **v0.2.0 (atual):** sistema de turnos, campo de visão e HUD.
 - **v0.3.0:** inimigos, combate e itens básicos.
 
 ## Estrutura de Pastas
@@ -61,4 +61,7 @@ jogo-roguelike/
 
 ## Estado Atual
 
-O jogo gera um mapa de salas interligadas, posiciona o jogador e permite movimentá-lo sem atravessar paredes.
+- Mapa amplo (100x60) com geração procedural de salas e corredores.
+- Campo de visão clássico com neblina de guerra persistente.
+- Sistema de turnos sincronizado com a entrada do jogador.
+- HUD com HP, energia, nível e log de mensagens rolante.
