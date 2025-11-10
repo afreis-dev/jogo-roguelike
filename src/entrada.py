@@ -21,7 +21,18 @@ MAPEAMENTO_MOVIMENTO = {
     "RIGHT": ("mover", 1, 0),
     "q": ("sair", 0, 0),
     "Q": ("sair", 0, 0),
+    "e": ("esperar", 0, 0),
+    "E": ("esperar", 0, 0),
+    "p": ("perks", 0, 0),
+    "P": ("perks", 0, 0),
+    "f": ("habilidade", 0, 0),
+    "F": ("habilidade", 0, 0),
+    " ": ("esperar", 0, 0),
 }
+
+for indice in range(1, 10):
+    tecla = str(indice)
+    MAPEAMENTO_MOVIMENTO[tecla] = ("usar_item", indice - 1, 0)
 
 
 def ler_comando() -> Comando:

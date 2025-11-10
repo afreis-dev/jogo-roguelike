@@ -1,5 +1,12 @@
 # Changelog
 
+## [v0.4.0] - Inimigos variados, itens e talentos
+- Introdução de goblins arqueiros com ataques à distância e IA diferenciada.
+- Aperfeiçoamento da inteligência dos goblins saqueadores com patrulha e fuga.
+- Novo sistema de itens consumíveis (poções, bomba de fumaça) com atalhos numéricos.
+- Perks e habilidade ativa Golpe Concentrado com progressão por talento.
+- Registro automático das estatísticas de cada expedição em `docs/historico_runs.csv`.
+
 ## [v0.3.0] - Goblins, combate e resumo de expedição
 - Inclusão de goblins hostis com IA simples que perseguem o jogador.
 - Combate baseado em atributos com cálculo de dano variável.

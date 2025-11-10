@@ -1,7 +1,7 @@
 """Responsável por desenhar o estado atual do jogo no terminal."""
 
 import os
-from typing import Dict, Iterable, List, Sequence, Set, Tuple
+from typing import Dict, Iterable, List, Optional, Sequence, Set, Tuple
 
 from .mundo.entidade import Entidade
 from .mundo.gerador_mapa import Mapa
@@ -48,16 +48,29 @@ def desenhar_hud(
 
     print("-" * largura_mapa)
     print(f"Turno: {turno}")
-    print(f"HP: {jogador.descricao_vida()}  Energia: {jogador.descricao_energia()}  Nível: {jogador.nivel}")
+    print(
+        f"HP: {jogador.descricao_vida()}  Energia: {jogador.descricao_energia()}  Nível: {jogador.nivel}"
+    )
+    if jogador.pontos_talento > 0:
+        print(f"Pontos de talento disponíveis: {jogador.pontos_talento} (pressione P para gastar)")
     if jogador.inventario:
-        itens_exibidos = ", ".join(jogador.inventario[-3:])
+        itens_formatados = ", ".join(
+            f"{indice + 1}:{item.nome}" for indice, item in enumerate(jogador.inventario[:5])
+        )
     else:
-        itens_exibidos = "vazio"
-    print(f"Inventário rápido: {itens_exibidos}")
+        itens_formatados = "vazio"
+    print(f"Inventário rápido: {itens_formatados}")
+    if jogador.perks:
+        nomes_perks = ", ".join(jogador.perks)
+    else:
+        nomes_perks = "nenhuma"
+    print(f"Perks ativas: {nomes_perks}")
     print("Mensagens:")
     for mensagem in mensagens:
         print(f" - {mensagem}")
-    print("\nUse WASD ou setas para se mover. Pressione Q para sair.")
+    print(
+        "\nComandos: WASD/setas para mover, Q para sair, Espaço/E para esperar, números para itens, F para habilidade."
+    )
 
 
 def renderizar(
@@ -86,6 +99,7 @@ def mostrar_resumo_final(
     turno_final: int,
     estatisticas: Dict[str, int],
     mensagens: Sequence[str],
+    caminho_registro: Optional[str] = None,
 ) -> None:
     """Exibe uma tela de resumo aguardando confirmação do jogador."""
 
@@ -95,7 +109,16 @@ def mostrar_resumo_final(
     print(f"Status final: {status_final} (HP {jogador.descricao_vida()})")
     print(f"Turnos percorridos: {turno_final}")
     print(f"Inimigos derrotados: {estatisticas.get('inimigos_derrotados', 0)}")
-    print(f"Poções coletadas: {estatisticas.get('pocoes_coletadas', 0)}")
+    print(f"Itens coletados: {estatisticas.get('itens_coletados', 0)}")
+    print(f"Itens usados: {estatisticas.get('itens_usados', 0)}")
+    print(f"Perks desbloqueadas: {estatisticas.get('perks_desbloqueadas', 0)}")
+    print(f"Habilidades ativadas: {estatisticas.get('habilidades_ativadas', 0)}")
+    if jogador.perks:
+        print(f"Perks obtidas: {', '.join(jogador.perks)}")
+    if jogador.habilidades:
+        print(f"Habilidades conhecidas: {', '.join(jogador.habilidades)}")
+    if caminho_registro:
+        print(f"Registro salvo em: {caminho_registro}")
     print("\nÚltimas memórias:")
     for mensagem in list(mensagens)[-8:]:
         print(f" - {mensagem}")
