@@ -26,7 +26,7 @@ class Entidade:
     hostil: bool = False
     comportamento: str = "neutro"
     estado: str = "patrulha"
-    raio_detecao: int = 5
+    raio_deteccao: int = 5
     alcance_ataque: int = 1
     experiencia: int = 0
     experiencia_para_nivel: int = 12

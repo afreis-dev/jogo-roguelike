@@ -126,7 +126,7 @@ def _novo_goblin_guerreiro(x: int, y: int) -> Entidade:
         agilidade=3,
         hostil=True,
         comportamento="goblin_guerreiro",
-        raio_detecao=9,
+        raio_deteccao=9,
         alcance_ataque=1,
         experiencia_entregue=6,
     )
@@ -150,7 +150,7 @@ def _novo_goblin_arqueiro(x: int, y: int) -> Entidade:
         agilidade=4,
         hostil=True,
         comportamento="goblin_arqueiro",
-        raio_detecao=11,
+        raio_deteccao=11,
         alcance_ataque=5,
         experiencia_entregue=8,
     )
